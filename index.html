@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+  
+  <title>The Best To-DO App</title>
+  
+  <!-- Included CSS Files -->
+  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="css/app.css">
+  
+  <!--[if lt IE 9]>
+      <link rel="stylesheet" href="stylesheets/ie.css">
+      <![endif]-->
+  
+  
+  <!-- IE Fix for HTML5 Tags -->
+  <!--[if lt IE 9]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+  
+</head>
+  <body>
+    <div id="container">
+      
+      <div id="header" class="container">
+      </div>
+      
+      <div id="body" class="container">
+        <center>
+          <h1 id="hi">Samir's To-Do</h1>
+        </center>
+      </div>
+      <div class="parser row">
+	<div class="eleven columns centered">
+	  <div class="panel main_panel" id="student_panel">
+	    <div id="search_header">
+	      <h3 class="black blurbtext-top" id="line1">Add a task:</h3>
+	      <h6 class="black blurbtext-top" id="line2"> (Click <a href="javascript:void(0);" id="help">here</a> for a list of commands)</h6>
+	      <form class="nice">
+		<div class="container">
+		  <div class="ten columns">
+		    <input id="task" class="expand input-text" type="text" placeholder="Type task">
+		  </div>
+		  <div class="two columns">
+		    <a href="javascript:void(0);" class="nice medium blue button radius" id="add_task">Add</a>
+		  </div>
+		</div>
+		<br>
+		<br>
+	      </form>
+	    </div>
+	  </div>
+	</div> 
+    	
+      <footer id="footer">
+        <b>Copyright 2012 Faggot McGee</b>
+      </footer>
+    </div>
+    
+    
+    <!-- Included JS Files -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/modernizr.foundation.js"></script>
+    <script src="js/foundation.js"></script>
+    <script src="js/app.js"></script>
+    
+
+    <script type="text/javascript">
+      /* Foundation v2.2 http://foundation.zurb.com */
+jQuery(document).ready(function ($) {
+    //when you click Hi, make an alert ever 4th time and change the color of the text.
+    var c = 0;
+    $('#hi').click(function() {
+      c++;
+      if (c % 4 === 0) //use triple equals in javascript
+        alert("you clicked that shit " + c + " times");
+      $('#hi').css('color', '#'+Math.floor(Math.random()*16777215).toString(16));
+    });
+  
+
+    $('#add_task').click(function() {
+	var str = $("#task").val();
+	parseText(str);
+    });
+    
+    function parseText(str) {
+	var words[] = str.split(" ");
+	alert("this got here");
+	for (var i = 0; i < words.length; i++) {
+	    alert(var[i]);
+	}
+    } 
+    
+    //---------------------------------------------------------
+  
+    $(document).ajaxSend(function(event, xhr, settings) {
+	function getCookie(name) {
+	    var cookieValue = null;
+	    if (document.cookie && document.cookie != '') {
+		var cookies = document.cookie.split(';');
+		for (var i = 0; i < cookies.length; i++) {
+		    var cookie = jQuery.trim(cookies[i]);
+		    // Does this cookie string begin with the name we want?
+		    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+			cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+			break;
+		    }
+		}
+	    }
+	    return cookieValue;
+	}
+
+	function sameOrigin(url) {
+	    // url could be relative or scheme relative or absolute
+	    var host = document.location.host; // host + port
+	    var protocol = document.location.protocol;
+	    var sr_origin = '//' + host;
+	    var origin = protocol + sr_origin;
+	    // Allow absolute or scheme relative URLs to same origin
+	    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+		(url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+		// or any other URL that isn't scheme relative or absolute i.e relative.
+		!(/^(\/\/|http:|https:).*/.test(url));
+	}
+
+	function safeMethod(method) {
+	    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+	}
+
+	if (!safeMethod(settings.type) && sameOrigin(settings.url)) {
+	    xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+	}
+    });
+
+    /* Use this js doc for all application specific JS */
+
+    /* TABS --------------------------------- */
+    /* Remove if you don't need :) */
+
+    function activateTab($tab) {
+	var $activeTab = $tab.closest('dl').find('a.active'),
+	contentLocation = $tab.attr("href") + 'Tab';
+
+	//Make Tab Active
+	$activeTab.removeClass('active');
+	$tab.addClass('active');
+
+	//Show Tab Content
+	$(contentLocation).closest('.tabs-content').children('li').hide();
+	$(contentLocation).css('display', 'block');
+    }
+
+    $('dl.tabs').each(function () {
+	//Get all tabs
+	var tabs = $(this).children('dd').children('a');
+	tabs.click(function (e) {
+	    activateTab($(this));
+	});
+    });
+
+    if (window.location.hash) {
+	activateTab($('a[href="' + window.location.hash + '"]'));
+    }
+
+    /* ALERT BOXES ------------ */
+    $(".alert-box").delegate("a.close", "click", function(event) {
+	event.preventDefault();
+	$(this).closest(".alert-box").fadeOut(function(event){
+	    $(this).remove();
+	});
+    });
+
+
+    /* PLACEHOLDER FOR FORMS ------------- */
+    /* Remove this and jquery.placeholder.min.js if you don't need :) */
+
+    $('input, textarea').placeholder();
+
+    /* TOOLTIPS ------------ */
+    $(this).tooltips();
+
+
+
+    /* UNCOMMENT THE LINE YOU WANT BELOW IF YOU WANT IE6/7/8 SUPPORT AND ARE USING .block-grids */
+    //	$('.block-grid.two-up>li:nth-child(2n+1)').css({clear: 'left'});
+    //	$('.block-grid.three-up>li:nth-child(3n+1)').css({clear: 'left'});
+    //	$('.block-grid.four-up>li:nth-child(4n+1)').css({clear: 'left'});
+    //	$('.block-grid.five-up>li:nth-child(5n+1)').css({clear: 'left'});
+
+
+
+    /* DROPDOWN NAV ------------- */
+
+    var lockNavBar = false;
+    $('.nav-bar a.flyout-toggle').live('click', function(e) {
+	e.preventDefault();
+	var flyout = $(this).siblings('.flyout');
+	if (lockNavBar === false) {
+	    $('.nav-bar .flyout').not(flyout).slideUp(500);
+	    flyout.slideToggle(500, function(){
+		lockNavBar = false;
+	    });
+	}
+	lockNavBar = true;
+    });
+    if (Modernizr.touch) {
+	$('.nav-bar>li.has-flyout>a.main').css({
+	    'padding-right' : '75px'
+	});
+	$('.nav-bar>li.has-flyout>a.flyout-toggle').css({
+	    'border-left' : '1px dashed #eee'
+	});
+    } else {
+	$('.nav-bar>li.has-flyout').hover(function() {
+	    $(this).children('.flyout').show();
+	}, function() {
+	    $(this).children('.flyout').hide();
+	})
+    }
+
+
+    /* DISABLED BUTTONS ------------- */
+    /* Gives elements with a class of 'disabled' a return: false; */
+
+
+});
+	
+    </script>
+  </body>
+</html>

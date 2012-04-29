@@ -1,0 +1,59 @@
+/* Foundation v2.2 http://foundation.zurb.com */
+/* Artfully masterminded by ZURB  */
+
+/* -------------------------------------------------- 
+   Table of Contents
+-----------------------------------------------------
+:: Shared Styles
+:: Page Name 1
+:: Page Name 2
+*/
+html, body {
+	height: 100%;
+	background: url("../img/gradient_squares.png");
+}
+#container {
+	min-height: 100%;
+	position: relative;
+}
+#body {
+	padding-bottom: 20px;
+}
+#header {
+	background: none repeat scroll 0 0 #222222;
+	border-bottom: 5px solid #8F8F8F;
+	
+}
+#header table {
+	background: #222222;
+	border: none;
+	margin-bottom: 0px;
+}
+#footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin-top: 30px;
+	padding-top: 20px;
+	text-align: center;
+	height: 20px;
+}
+h1 {
+	font-size: 100px;
+}
+/* -----------------------------------------
+   Shared Styles
+----------------------------------------- */
+
+
+
+/* -----------------------------------------
+   Page Name 1
+----------------------------------------- */
+
+
+
+
+/* -----------------------------------------
+   Page Name 2
+----------------------------------------- */

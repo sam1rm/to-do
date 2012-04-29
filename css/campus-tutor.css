@@ -1,0 +1,16 @@
+/* Our own CSS document. */
+
+
+
+.signup_label {
+	     vertical-align:middle;
+	     width:35%;
+}
+
+.signup_text {
+	     float:right;
+}
+
+.expand_85 {
+	   width:85%;
+}
